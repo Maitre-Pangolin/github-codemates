@@ -13,12 +13,16 @@ const Search = () => {
     if (!name) return;
     fetch(`https://api.github.com/users/${name}`)
       .then((response) => {
-        if (response.status == 404) setNotFound(true);
+        if (response.status == 404) {
+          setNotFound(true);
+          throw new Error("test");
+        }
         return response.json();
       })
       .then((data) => {
-        history.push({ pathname: `/res`, state: { user: data } });
-      });
+        history.push({ pathname: `/${data.login}`, state: { user: data } });
+      })
+      .catch((e) => {});
   };
 
   return (

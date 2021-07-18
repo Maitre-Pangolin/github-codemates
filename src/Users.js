@@ -2,54 +2,84 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Redirect, useHistory } from "react-router";
-import { Button, Icon } from "semantic-ui-react";
+import { Button, Icon, Message } from "semantic-ui-react";
 import Neighbour from "./Neighbour";
 
 const Users = (props) => {
   const history = useHistory();
-  //const [user, setUser] = useState({});
-  const user = props.location.state.user;
+  const [user, setUser] = useState({});
+  //const user = props.location.state ? props.location.state.user : undefined;
   const [neighbours, setNeighbours] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
   const [page, setPage] = useState(1);
+  const [notFound, setNotFound] = useState(false);
   const perPage = 40;
+  const login = props.match.params.login;
   //location.state.user
+
+  const getNeighbours = async (user) => {
+    const dateFrom = new Date(user.created_at);
+    fetch(
+      `https://api.github.com/search/users?q=created:${dateFrom
+        .toISOString()
+        .slice(0, -14)}..${dateFrom
+        .toISOString()
+        .slice(0, -14)} &per_page=40&page=${page}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setNeighbours(data.items);
+        setTotalResults(data.total_count);
+      });
+  };
 
   useEffect(() => {
     if (!props.location.state) {
-      history.push("/");
-    } else {
-      //setUser(props.location.state.user);
-      //const userCreation = props.location.state.user.created_at;
-      const dateFrom = new Date(props.location.state.user.created_at);
-      /*const dateTo = new Date(dateFrom.getTime());
-      dateTo.setDate(dateTo.getDate() + 1);
-      console.log("Date 0", dateFrom.);
-      console.log("Date 1", dateTo);*/
-      fetch(
-        `https://api.github.com/search/users?q=created:${dateFrom
-          .toISOString()
-          .slice(0, -14)}..${dateFrom
-          .toISOString()
-          .slice(0, -14)} &per_page=40&page=${page}`
-      )
-        .then((response) => response.json())
+      //history.push("/");
 
-        .then((data) => {
-          console.log(data);
-          setNeighbours(data.items);
-          setTotalResults(data.total_count);
-        });
+      fetch(`https://api.github.com/users/${login}`)
+        .then((response) => {
+          if (response.status == 404) {
+            setNotFound(true);
+            throw new Error("Not found");
+          }
+          return response.json();
+        })
+        .then((user) => {
+          setUser(user);
+          getNeighbours(user);
+        })
+        .catch((e) => console.log(e));
+    } else {
+      const user = props.location.state.user;
+      setUser(user);
+      getNeighbours(user);
     }
   }, [page]);
 
-  //const incrementPage
+  const formatDate = (dateStr) => {
+    const date = new Date(dateStr);
+    return date.toDateString();
+  };
+
+  if (notFound) {
+    return (
+      <div>
+        {" "}
+        <Message color="red">
+          <Message.Header>User {login} does not exist.</Message.Header>
+        </Message>
+      </div>
+    );
+  }
 
   return (
     <div>
       <h2>
-        Hi <span style={{ color: "red" }}>{user.login}</span> ! Meet your{" "}
-        {totalResults} codemates.
+        Hi <span style={{ color: "red" }}>{user.login}</span> ! You created your
+        github account on{" "}
+        <span style={{ color: "red" }}>{formatDate(user.created_at)}</span>,
+        meet your {totalResults} codemates.
       </h2>
       <Button
         icon

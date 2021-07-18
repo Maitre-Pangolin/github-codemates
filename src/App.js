@@ -29,7 +29,7 @@ function App() {
         </div>
         <Switch>
           <Route path="/" component={Search} exact={true} />
-          <Route path="/res" component={Users} exact={true} />
+          <Route path="/:login" component={Users} exact={true} />
         </Switch>
       </Router>
     </div>
