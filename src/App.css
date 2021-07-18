@@ -1,3 +1,16 @@
 .App {
   text-align: center;
 }
+
+header h1 {
+  font-size: 60px;
+}
+header {
+  margin: 20px 20px;
+}
+
+.homeFloat {
+  position: absolute;
+  left: 40px;
+  top: 40px;
+}
