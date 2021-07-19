@@ -21,7 +21,10 @@ const Search = () => {
         return response.json();
       })
       .then((data) => {
-        history.push({ pathname: `/${data.login}`, state: { user: data } });
+        history.push({
+          pathname: `/github-codemates/${data.login}`,
+          state: { user: data },
+        });
       })
       .catch((e) => {
         setError(
