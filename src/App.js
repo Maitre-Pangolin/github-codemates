@@ -17,7 +17,7 @@ function App() {
         </header>
         <div className="homeFloat">
           {" "}
-          <Link to="/">
+          <Link to="/github-codemates">
             <Button animated="fade" size="big">
               <Button.Content visible>
                 <Icon name="home" />
@@ -27,8 +27,12 @@ function App() {
           </Link>
         </div>
         <Switch>
-          <Route path="/" component={Search} exact={true} />
-          <Route path="/:login" component={Users} exact={true} />
+          <Route path="/github-codemates" component={Search} exact={true} />
+          <Route
+            path="/github-codemates/:login"
+            component={Users}
+            exact={true}
+          />
         </Switch>
       </Router>
     </div>
