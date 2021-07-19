@@ -6,7 +6,6 @@ const Neighbour = (props) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    console.log(urlUser);
     fetch(urlUser)
       .then((response) => response.json())
       .then((data) => setUser(data));
