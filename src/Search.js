@@ -22,7 +22,7 @@ const Search = () => {
       })
       .then((data) => {
         history.push({
-          pathname: `/github-codemates/${data.login}`,
+          pathname: `/${data.login}`,
           state: { user: data },
         });
       })

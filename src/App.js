@@ -27,12 +27,8 @@ function App() {
           </Link>
         </div>
         <Switch>
-          <Route path="/github-codemates" component={Search} exact={true} />
-          <Route
-            path="/github-codemates/:login"
-            component={Users}
-            exact={true}
-          />
+          <Route path="/" component={Search} exact={true} />
+          <Route path="/:login" component={Users} exact={true} />
         </Switch>
       </Router>
     </div>
