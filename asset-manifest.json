@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/github-codemates/static/css/main.50b3d61c.chunk.css",
-    "main.js": "/github-codemates/static/js/main.5be87095.chunk.js",
-    "main.js.map": "/github-codemates/static/js/main.5be87095.chunk.js.map",
+    "main.js": "/github-codemates/static/js/main.a41eed42.chunk.js",
+    "main.js.map": "/github-codemates/static/js/main.a41eed42.chunk.js.map",
     "runtime-main.js": "/github-codemates/static/js/runtime-main.2dd79134.js",
     "runtime-main.js.map": "/github-codemates/static/js/runtime-main.2dd79134.js.map",
     "static/css/2.e0c3834e.chunk.css": "/github-codemates/static/css/2.e0c3834e.chunk.css",
@@ -19,6 +19,6 @@
     "static/css/2.e0c3834e.chunk.css",
     "static/js/2.545d9a23.chunk.js",
     "static/css/main.50b3d61c.chunk.css",
-    "static/js/main.5be87095.chunk.js"
+    "static/js/main.a41eed42.chunk.js"
   ]
 }
