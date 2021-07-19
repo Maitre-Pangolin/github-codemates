@@ -1,10 +1,48 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import { Card, Image, Icon } from "semantic-ui-react";
 
 const Neighbour = (props) => {
+  const urlUser = props.user.url;
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    console.log(urlUser);
+    fetch(urlUser)
+      .then((response) => response.json())
+      .then((data) => setUser(data));
+  }, [urlUser]);
+
   return (
-    <div>
-      <h3>{props.user.login}</h3>
-      <img src={props.user.avatar_url} alt="" width="300px" />
+    <div style={{ margin: "20px", width: "300px" }}>
+      <Card href={user.html_url} fluid>
+        <Image src={props.user.avatar_url} />
+        <Card.Content>
+          <Card.Header>{user.login}</Card.Header>
+          <Card.Meta>{user.name}</Card.Meta>
+          <Card.Description textAlign="left">
+            {user.bio || "No bio"}
+          </Card.Description>
+        </Card.Content>
+        <Card.Content extra textAlign="left">
+          <Card.Description>
+            <Icon name="github square" />
+            {user.public_repos} public repositories
+          </Card.Description>
+
+          <Card.Description>
+            <Icon name="home" />
+            {user.location || "No location"}
+          </Card.Description>
+          <Card.Description>
+            <Icon name="building" />
+            {user.company || "No company"}
+          </Card.Description>
+          <Card.Description>
+            <Icon name="users" />
+            {user.followers} follower{user.followers > 1 ? "s" : ""}
+          </Card.Description>
+        </Card.Content>
+      </Card>
     </div>
   );
 };

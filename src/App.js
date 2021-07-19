@@ -1,5 +1,4 @@
 import "./App.css";
-import Sandbox from "./Sandbox";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Button, Icon } from "semantic-ui-react";
 import Search from "./Search";
