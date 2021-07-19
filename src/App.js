@@ -17,7 +17,7 @@ function App() {
         </header>
         <div className="homeFloat">
           {" "}
-          <Link to="/github-codemates">
+          <Link to="/">
             <Button animated="fade" size="big">
               <Button.Content visible>
                 <Icon name="home" />

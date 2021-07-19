@@ -102,6 +102,7 @@ const Users = (props) => {
             justifyContent: "space-evenly",
           }}
         >
+          <Neighbour key={user.id} user={user}></Neighbour>
           {neighbours.map((n) => (
             <Neighbour key={n.id} user={n}></Neighbour>
           ))}
