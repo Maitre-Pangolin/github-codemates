@@ -16,7 +16,7 @@ const Neighbour = (props) => {
       <Card href={user.html_url} fluid>
         <Image src={props.user.avatar_url} />
         <Card.Content>
-          <Card.Header>{user.login}</Card.Header>
+          <Card.Header>{props.user.login}</Card.Header>
           <Card.Meta>{user.name}</Card.Meta>
           <Card.Description textAlign="left">
             {user.bio || "No bio"}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button, Icon, Message } from "semantic-ui-react";
-import Neighbour from "./Neighbour";
+import Neighbour2 from "./Neighbour2";
 
 const Users = (props) => {
   const [user, setUser] = useState({});
@@ -14,14 +14,17 @@ const Users = (props) => {
 
   const getNeighbours = async (user) => {
     const dateFrom = new Date(user.created_at);
-    fetch(
-      `https://api.github.com/search/users?q=created:${dateFrom
-        .toISOString()
-        .slice(0, -14)}..${dateFrom
-        .toISOString()
-        .slice(0, -14)} &per_page=${perPage}&page=${page}`
-    )
-      .then((response) => response.json())
+    const url = `https://api.github.com/search/users?q=created:${dateFrom
+      .toISOString()
+      .slice(0, -14)}..${dateFrom
+      .toISOString()
+      .slice(0, -14)}&per_page=${perPage}&page=${page}`;
+    console.log("From Users component :", `calling ${url}`);
+    fetch(url)
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      })
       .then((data) => {
         setNeighbours(data.items);
         setTotalResults(data.total_count);
@@ -102,9 +105,9 @@ const Users = (props) => {
             justifyContent: "space-evenly",
           }}
         >
-          <Neighbour key={user.id} user={user}></Neighbour>
+          <Neighbour2 key={user.id} user={user}></Neighbour2>
           {neighbours.map((n) => (
-            <Neighbour key={n.id} user={n}></Neighbour>
+            <Neighbour2 key={n.id} user={n}></Neighbour2>
           ))}
         </div>
         <Button

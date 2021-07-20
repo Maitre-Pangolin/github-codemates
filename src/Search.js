@@ -15,12 +15,10 @@ const Search = () => {
         if (response.status === 404) {
           throw new Error(`404 : User ${name} not found.`);
         }
-        if (response.status === 403) {
-          throw new Error("API rate exceeded, try again later !");
-        }
         return response.json();
       })
       .then((data) => {
+        if (data.message) throw new Error(data.message);
         history.push({
           pathname: `/${data.login}`,
           state: { user: data },
