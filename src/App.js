@@ -3,6 +3,7 @@ import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Button, Icon } from "semantic-ui-react";
 import Search from "./Search";
 import Users from "./Users";
+import RateAPI from "./RateAPI";
 
 function App() {
   return (
@@ -28,7 +29,8 @@ function App() {
         </div>
         <Switch>
           <Route path="/" component={Search} exact={true} />
-          <Route path="/:login" component={Users} exact={true} />
+          <Route path="/rate" component={RateAPI} exact={true} />
+          <Route path="/res/:login" component={Users} exact={true} />
         </Switch>
       </Router>
     </div>

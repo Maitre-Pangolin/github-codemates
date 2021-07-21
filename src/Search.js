@@ -20,7 +20,7 @@ const Search = () => {
       .then((data) => {
         if (data.message) throw new Error(data.message);
         history.push({
-          pathname: `/${data.login}`,
+          pathname: `/res/${data.login}`,
           state: { user: data },
         });
       })
