@@ -4,7 +4,7 @@ An app that allows you to find people that created their github account the same
 
 ## Technologies
 
-Built using Create-React-App , React Router and Semantic-Ui-React on top of the Github API and a small back-end service (ADD LINK)
+Built using Create-React-App , React Router and Semantic-Ui-React on top of the Github API and a small [node back-end service](https://github.com/Maitre-Pangolin/github-project-backend) deployed on Heroku.
 <div>
 <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' width="50" height="50">
 <img src='https://react.semantic-ui.com/logo.png' width="50" height=50">
@@ -43,5 +43,5 @@ Building the first version I was limited by the Github API call rate :
   
 It was really frustrating as my application was behaving as expected but my allowed calls would top out in two clicks of the mouse as a single page load after a search can trigger 30 API user calls to get users full informations.
 
-I've decided to create a small back-end service (LINK) to make server-to-server call using a dedicated OAuth2 token to increase the call rate to 30 and 5000 for search and core access respectively. (In progress)
+I've decided to create a [small back-end service](https://github.com/Maitre-Pangolin/github-project-backend) to make server-to-server call using a dedicated OAuth2 token to increase the call rate to 30 and 5000 for search and core access respectively. 
 
