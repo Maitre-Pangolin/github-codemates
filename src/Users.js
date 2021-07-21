@@ -19,10 +19,8 @@ const Users = (props) => {
       .slice(0, -14)}..${dateFrom
       .toISOString()
       .slice(0, -14)}&per_page=${perPage}&page=${page}`;
-    console.log("From Users component :", `calling ${url}`);
     fetch(url)
       .then((response) => {
-        console.log(response);
         return response.json();
       })
       .then((data) => {
