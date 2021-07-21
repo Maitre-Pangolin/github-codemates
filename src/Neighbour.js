@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Card, Image, Icon } from "semantic-ui-react";
 
 const Neighbour = (props) => {
-  const urlUser = props.user.url;
+  const urlUser = `https://github-project-backend.herokuapp.com/user/${props.user.login}`;
   const [user, setUser] = useState({});
 
   useEffect(() => {

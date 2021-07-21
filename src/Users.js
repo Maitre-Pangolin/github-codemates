@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button, Icon, Message } from "semantic-ui-react";
-import Neighbour2 from "./Neighbour2";
+import Neighbour from "./Neighbour";
 
 const Users = (props) => {
   const [user, setUser] = useState({});
@@ -103,9 +103,9 @@ const Users = (props) => {
             justifyContent: "space-evenly",
           }}
         >
-          <Neighbour2 key={user.id} user={user}></Neighbour2>
+          <Neighbour key={user.id} user={user}></Neighbour>
           {neighbours.map((n) => (
-            <Neighbour2 key={n.id} user={n}></Neighbour2>
+            <Neighbour key={n.id} user={n}></Neighbour>
           ))}
         </div>
         <Button

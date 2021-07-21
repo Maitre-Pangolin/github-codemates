@@ -1,30 +1,40 @@
 import { useEffect, useState } from "react";
 
 const RateAPI = () => {
-  const [rate, setRate] = useState({});
+  const [searchRate, setSearchRate] = useState({});
+  const [coreRate, setCoreRate] = useState({});
+  const [error, setError] = useState(undefined);
 
   useEffect(() => {
     fetch("https://api.github.com/rate_limit?")
       .then((response) => response.json())
       .then((data) => {
-        setRate(data);
-        console.log(data);
-      });
+        setSearchRate(data);
+      })
+      .catch((err) => setError(err.message));
+
+    fetch("https://github-project-backend.herokuapp.com/rate")
+      .then((response) => response.json())
+      .then((data) => {
+        setCoreRate(data);
+      })
+      .catch((err) => setError(err.message));
   }, []);
 
-  if (rate.resources)
+  if (searchRate.resources && coreRate.resources)
     return (
       <div style={{ textAlign: "left", marginLeft: "20px" }}>
         <h2>API Stats</h2>
-        <h2>CORE</h2>
-        <p>Limit : {rate.resources.core.limit}</p>
-        <p>Remaining : {rate.resources.core.remaining}</p>
+        <h2>CORE (From server API token)</h2>
+        <p>Limit : {coreRate.resources.core.limit}</p>
+        <p>Remaining : {coreRate.resources.core.remaining}</p>
         <h2>SEARCH</h2>
-        <p>Limit : {rate.resources.search.limit}</p>
-        <p>Remaining : {rate.resources.search.remaining}</p>
+        <p>Limit : {searchRate.resources.search.limit}</p>
+        <p>Remaining : {searchRate.resources.search.remaining}</p>
+        <h1>{error}</h1>
       </div>
     );
-  return null;
+  return <h1>{error}</h1>;
 };
 
 export default RateAPI;
